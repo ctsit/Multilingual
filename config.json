@@ -1,585 +1,574 @@
 {
-	"name": "Multilingual",
+    "name": "Multilingual",
 
-	"namespace": "CMH\\Multilingual",
+    "namespace": "CMH\\Multilingual",
 
-	"description": "Allow survey's and data entry forms to be translated into multiple languages. Add translations via the Online Designer.",
+    "description": "Allow survey's and data entry forms to be translated into multiple languages. Add translations via the Online Designer.",
 
-	"versions": [
-		{"1.2": "Move all functions into Multilingual class"},
-		{"1.3": "Fix matrix column label order"},
-		{"1.4": "Hide all label elements"},
-		{"1.5": "Fix validation popup"},
-		{"1.6": "Fix NOAUTH, Other IE issues"},
-		{"1.7": "Piping, Button settings (color/width) and fix for XML export"},
-		{"1.8": "Piping for answers"},
-		{"1.8.1": "Bug fix for validation popup"},
-		{"1.8.2": "Bug fix for removing html on the data entry page"},
-		{"1.8.3": "Translate notes/slider, default validation messages translations, stop action translations, bug fixes"},
-		{"1.10.0": "Added form-specific text translation settings in the Survey Settings page"},
-		{"1.10.1": "Fix bugs that might prevent Survey Settings module values from loading or translation would fail on the surey page"},
-		{"1.11.3": "Added eConsent, basic navigation, and field-specific translation settings"},
-		{"1.11.4": "Survey Settings page will now correctly find the instructions and acknowlegement tinyMCE editors in REDCap 10.2+"},
-		{"1.11.5": "Fixed a bug where question labels with embedded HTML were renderly incorrectly"},
-		{"1.11.6": "Fixed regression where mobile surveys had faulty branching logic errors appear -- html translations now happen sequentially over found text nodes"},
-		{"1.12.0": "Add option to hide language translations at the form level. Added setting for 'Submit' button."},
-		{"1.12.1": "Fixed jQuery Exception in controlText and lang setting issue in getLanguage (multilingual_survey.js)"},
-		{"1.14.0": "Implemented PDF field translations."},
-		{"1.14.1": "Implemented PDF answer translations."}
-	],
-	
-	"framework-version": 5,
+    "versions": [
+        { "1.2": "Move all functions into Multilingual class" },
+        { "1.3": "Fix matrix column label order" },
+        { "1.4": "Hide all label elements" },
+        { "1.5": "Fix validation popup" },
+        { "1.6": "Fix NOAUTH, Other IE issues" },
+        { "1.7": "Piping, Button settings (color/width) and fix for XML export" },
+        { "1.8": "Piping for answers" },
+        { "1.8.1": "Bug fix for validation popup" },
+        { "1.8.2": "Bug fix for removing html on the data entry page" },
+        { "1.8.3": "Translate notes/slider, default validation messages translations, stop action translations, bug fixes" },
+        { "1.10.0": "Added form-specific text translation settings in the Survey Settings page" },
+        { "1.10.1": "Fix bugs that might prevent Survey Settings module values from loading or translation would fail on the surey page" },
+        { "1.11.3": "Added eConsent, basic navigation, and field-specific translation settings" },
+        { "1.11.4": "Survey Settings page will now correctly find the instructions and acknowlegement tinyMCE editors in REDCap 10.2+" },
+        { "1.11.5": "Fixed a bug where question labels with embedded HTML were renderly incorrectly" },
+        { "1.11.6": "Fixed regression where mobile surveys had faulty branching logic errors appear -- html translations now happen sequentially over found text nodes" },
+        { "1.12.0": "Add option to hide language translations at the form level. Added setting for 'Submit' button." },
+        { "1.12.1": "Fixed jQuery Exception in controlText and lang setting issue in getLanguage (multilingual_survey.js)" },
+        { "1.14.0": "Implemented PDF field translations." },
+        { "1.14.1": "Implemented PDF answer translations." },
+        { "1.14.2": "Add PHP8 support." }
+    ],
 
-	"authors": [
-		{
-			"name": "Stephen Martin",
-			"email": "samartin1@cmh.edu",
-			"institution": "Children's Mercy Hospital"
-		},
-		{
-			"name": "Jen Hoitenga",
-			"email": "jahoitenga@cmh.edu",
-			"institution": "Children's Mercy Hospital"
-		}
-	],
+    "framework-version": 5,
 
-	"permissions": [
-		"redcap_data_entry_form",
-		"redcap_every_page_top",
-		"redcap_survey_complete",
-		"redcap_survey_page",
-		"redcap_pdf"
-	],
+    "authors": [{
+            "name": "Stephen Martin",
+            "email": "samartin1@cmh.edu",
+            "institution": "Children's Mercy Hospital"
+        },
+        {
+            "name": "Jen Hoitenga",
+            "email": "jahoitenga@cmh.edu",
+            "institution": "Children's Mercy Hospital"
+        }
+    ],
 
-	"links": {
-		"project": [
-			{
-				"name": "Multilingual Data Dictionary Support",
-				"icon": "gear",
-				"url": "dataDictionaryHelper.php"
-			}
-		]
-	},
+    "permissions": [
+        "redcap_data_entry_form",
+        "redcap_every_page_top",
+        "redcap_survey_complete",
+        "redcap_survey_page",
+        "redcap_pdf"
+    ],
 
-	"no-auth-pages": [
-		"index",
-		"multilingualPDF"
-	],
-	
-	"system-settings": [
-		{
-		  "key": "use-api-endpoint",
-		  "name": "<b>Use API endpoint for public surveys</b>",
-		  "type": "checkbox"
-		},
-		{
-		  "key": "use-drafted-changes",
-		  "name": "<b>Use drafted changes while in production</b>",
-		  "type": "checkbox"
-		}
-	],
+    "links": {
+        "project": [{
+            "name": "Multilingual Data Dictionary Support",
+            "icon": "gear",
+            "url": "dataDictionaryHelper.php"
+        }]
+    },
 
-	"project-settings": [
-		{
-			"key": "languages_variable",
-			"name": "Languages Variable",
-			"required": true,
-			"type": "text",
-			"repeatable": false,
-			"default": "languages"
-		},
-		{
-			"key": "translate_pdfs_instruments",
-			"name": "Translate PDFs on a per-instrument basis",
-			"required": false,
-			"type": "checkbox"
-		},
-		{
-			"key": "font-color",
-			"name": "Font Color (ex. #FFFFFF)",
-			"required": false,
-			"type": "text",
-			"repeatable": false,
-			"default": "#FFFFFF"
-		},
-		{
-			"key": "background-color",
-			"name": "Background Color (ex. #005cb9)",
-			"required": false,
-			"type": "text",
-			"repeatable": false,
-			"default": "#005cb9"
-		},
-		{
-			"key": "button-width",
-			"name": "Button Width (ex. 100px)",
-			"required": false,
-			"type": "text",
-			"repeatable": false,
-			"default": "100px"
-		},
-		{
-			"key": "start-screen-width",
-			"name": "Start Up Screen Width (ex. 220px, expand initial screen if using many languages)",
-			"required": false,
-			"type": "text",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "show-start-screen",
-			"name": "Show Start Up Screen when changing languages (instead of jumping to next language)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "show-all-lang-buttons",
-			"name": "Always show all language select buttons",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "keep-must-provide-value",
-			"name": "Keep \"* must provide value\" (Do not translate)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "hide-answers-without-translation",
-			"name": "Hide Answers that do not have a translation on instruments. (Radio/Dropdown/Checkbox Options without a translation for the current language will not be displayed)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "hide-matrix-questions-without-translation",
-			"name": "Hide Matrix Field Questions that do not have a translation on instruments. (Matrix Rows/Questions without a translation for the current language will not be displayed)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "hide-answers-without-translation-survey",
-			"name": "Hide Answers that do not have a translation on surveys. (Radio/Dropdown/Checkbox Options without a translation for the current language will not be displayed)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "hide-matrix-questions-without-translation-survey",
-			"name": "Hide Matrix Field Questions that do not have a translation on surveys. (Matrix Rows/Questions without a translation for the current language will not be displayed)",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "multilingual-econsent",
-			"name": "Use multilingual PDFs for eConsent/survey download",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false,
-			"default": ""
-		},
-		{
-			"key": "prevent-check-mark-submit",
-			"name": "Prevent symbolic translation for survey 'Submit' button",
-			"required": false,
-			"type": "checkbox",
-			"repeatable": false
-		},		
-		{
-			"key": "multilingual-project-encoding",
-			"name": "PDF Encodings/Translations",
-			"required": false,
-			"type": "sub_settings",
-			"repeatable": true,
-			"sub_settings":[
-				{
-					"key": "encoding-language",
-					"name": "Language",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "encoding-type",
-					"name": "Encoding",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "pdf-title",
-					"name": "PDF Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "econsent-checkbox-text",
-					"name": "EConsent Checkbox Text",
-					"required": false,
-					"type": "notes",
-					"repeatable": false
-				}
-			]
-		},
-		{
-			"key": "save-return-later",
-			"name": "Save & Return Later Text",
-			"required": false,
-			"type": "sub_settings",
-			"repeatable": true,
-			"sub_settings":[
-				{
-					"key": "save-return-later-lang",
-					"name": "Language",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "descriptive-text1",
-					"name": "<span style=\"color:blue;font-style:italic;\">These are translations Save & Return on the survey page.</span>",
-					"type": "descriptive"
-				},
-				{
-					"key": "save-return-later-button",
-					"name": "Button Text",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-later-corner",
-					"name": "Returning? Corner of Survey",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-later-text",
-					"name": "Returning? Popup",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-later-continue-button",
-					"name": "Returning? Continue Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "descriptive-text2",
-					"name": "<span style=\"color:blue;font-style:italic;\">These are translations for the popup on return page (if using a return code).</span>",
-					"type": "descriptive"
-				},
-				{
-					"key": "save-return-page-popup-title",
-					"name": "Return Page Popup Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-popup-body",
-					"name": "Return Page Popup Body",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-popup-return-code",
-					"name": "Return Page Return Code text",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "descriptive-text3",
-					"name": "<span style=\"color:blue;font-style:italic;\">These are translations for the return page.</span>",
-					"type": "descriptive"
-				},
-				{
-					"key": "save-return-page-title",
-					"name": "Return Page Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-instructions",
-					"name": "Return Page Instructions",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-return-code-instructions",
-					"name": "Return Page Return Code Instructions",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-survey-link-title",
-					"name": "Return Page Email Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-email-instructions",
-					"name": "Return Page Email Instructions",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-email-button",
-					"name": "Return Page Email Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-continue-title",
-					"name": "Return Page Continue Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "descriptive-text4",
-					"name": "<span style=\"color:blue;font-style:italic;\">These are translations for the continue page.</span>",
-					"type": "descriptive"
-				},
-				{
-					"key": "save-return-page-survey-title",
-					"name": "Continue Title",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-continue-text",
-					"name": "Continue Page Text",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-startover-text",
-					"name": "Start Over Text",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "save-return-page-startover-button",
-					"name": "Start Over Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "descriptive-text5",
-					"name": "<span style=\"color:blue;font-style:italic;\">These are translations for a completed survey.</span>",
-					"type": "descriptive"
-				},
-				{
-					"key": "save-return-page-complete-text",
-					"name": "Completed Text",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				}
-			]
-		}, 
-		{
-			"key": "stop-text",
-			"name": "Stop Survey Text",
-			"required": false,
-			"type": "sub_settings",
-			"repeatable": true,
-			"sub_settings":[
-				{
-					"key": "stop-text-lang",
-					"name": "Language",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "stop-text-body",
-					"name": "Body",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				},
-				{
-					"key": "stop-text-stop-button",
-					"name": "Stop Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "stop-text-continue-button",
-					"name": "Continue Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "stop-text-return-body",
-					"name": "Return Body",
-					"required": false,
-					"type": "textarea",
-					"repeatable": false
-				}
-			]
-		}, 
-		{
-			"key": "survey-control-text",
-			"name": "Survey Control Text",
-			"required": false,
-			"type": "sub_settings",
-			"repeatable": true,
-			"sub_settings":[
-				{
-					"key": "survey-control-lang",
-					"name": "Language",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-submit",
-					"name": "Submit Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-next",
-					"name": "Next Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-prev",
-					"name": "Previous Button",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-reset",
-					"name": "Reset Field Link",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-font-size",
-					"name": "Font Size Text",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				},
-				{
-					"key": "survey-control-page-number",
-					"name": "Page Number: Use 'CURRENTPAGE' and 'MAXPAGE' to place the numbers in the translation like so: (Page CURRENTPAGE of MAXPAGE)",
-					"required": false,
-					"type": "text",
-					"repeatable": false
-				}
-			]
-		}, 
-		{
-			"key": "default-error-prompt",
-			"name": "Default error prompt for text fields",
-			"required": false,
-			"type": "sub_settings",
-			"repeatable":true,
-			"sub_settings":[
-				{
-				"key": "validation",
-				"name": "Validation type",
-				"required": false,
-				"type": "dropdown",
-				"choices":[
-					{
-						"name" : "Integer",
-						"value" : "int"
-					},
-					{
-						"name" : "Number",
-						"value" : "float"
-					},
-					{
-						"name" : "Date (dmy)",
-						"value" : "date_dmy"
-					},
-					{
-						"name" : "Date (mdy)",
-						"value" : "date_mdy"
-					},
-					{
-						"name" : "Date (ymd)",
-						"value" : "date_ymd"
-					},
-					{
-						"name" : "Time",
-						"value" : "time"
-					},
-					{
-						"name" : "Email",
-						"value" : "email"
-					}
-				]
-				},
-				{
-				"key": "translations",
-				"name": "Translations",
-				"required": false,
-				"repeatable":true,
-				"type": "sub_settings", 
-				"sub_settings":[
-					{
-					"key": "lang",
-					"name": "Language",
-					"required": false,
-					"type": "text"
-					}, 
-					{
-					"key": "error",
-					"name": "Translated error message",
-					"required": false,
-					"type": "textarea"
-					}
-				]
-				}
-			]
-		}, 
-		{
-		"key": "descriptive-text",
-		"name": "<u>Note</u><br><ul><li>Language must match with the labels as defined in the variable `language`.<br>e.g. 'English' instead of 1.</li><li>You may use `[validation_range]` in the translated error message to pipe the validation range.</li></ul>",
-		"type": "descriptive"
-		}
-	]
+    "no-auth-pages": [
+        "index",
+        "multilingualPDF"
+    ],
+
+    "system-settings": [{
+            "key": "use-api-endpoint",
+            "name": "<b>Use API endpoint for public surveys</b>",
+            "type": "checkbox"
+        },
+        {
+            "key": "use-drafted-changes",
+            "name": "<b>Use drafted changes while in production</b>",
+            "type": "checkbox"
+        }
+    ],
+
+    "project-settings": [{
+            "key": "languages_variable",
+            "name": "Languages Variable",
+            "required": true,
+            "type": "text",
+            "repeatable": false,
+            "default": "languages"
+        },
+        {
+            "key": "translate_pdfs_instruments",
+            "name": "Translate PDFs on a per-instrument basis",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "font-color",
+            "name": "Font Color (ex. #FFFFFF)",
+            "required": false,
+            "type": "text",
+            "repeatable": false,
+            "default": "#FFFFFF"
+        },
+        {
+            "key": "background-color",
+            "name": "Background Color (ex. #005cb9)",
+            "required": false,
+            "type": "text",
+            "repeatable": false,
+            "default": "#005cb9"
+        },
+        {
+            "key": "button-width",
+            "name": "Button Width (ex. 100px)",
+            "required": false,
+            "type": "text",
+            "repeatable": false,
+            "default": "100px"
+        },
+        {
+            "key": "start-screen-width",
+            "name": "Start Up Screen Width (ex. 220px, expand initial screen if using many languages)",
+            "required": false,
+            "type": "text",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "show-start-screen",
+            "name": "Show Start Up Screen when changing languages (instead of jumping to next language)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "show-all-lang-buttons",
+            "name": "Always show all language select buttons",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "keep-must-provide-value",
+            "name": "Keep \"* must provide value\" (Do not translate)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "hide-answers-without-translation",
+            "name": "Hide Answers that do not have a translation on instruments. (Radio/Dropdown/Checkbox Options without a translation for the current language will not be displayed)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "hide-matrix-questions-without-translation",
+            "name": "Hide Matrix Field Questions that do not have a translation on instruments. (Matrix Rows/Questions without a translation for the current language will not be displayed)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "hide-answers-without-translation-survey",
+            "name": "Hide Answers that do not have a translation on surveys. (Radio/Dropdown/Checkbox Options without a translation for the current language will not be displayed)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "hide-matrix-questions-without-translation-survey",
+            "name": "Hide Matrix Field Questions that do not have a translation on surveys. (Matrix Rows/Questions without a translation for the current language will not be displayed)",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "multilingual-econsent",
+            "name": "Use multilingual PDFs for eConsent/survey download",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false,
+            "default": ""
+        },
+        {
+            "key": "prevent-check-mark-submit",
+            "name": "Prevent symbolic translation for survey 'Submit' button",
+            "required": false,
+            "type": "checkbox",
+            "repeatable": false
+        },
+        {
+            "key": "multilingual-project-encoding",
+            "name": "PDF Encodings/Translations",
+            "required": false,
+            "type": "sub_settings",
+            "repeatable": true,
+            "sub_settings": [{
+                    "key": "encoding-language",
+                    "name": "Language",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "encoding-type",
+                    "name": "Encoding",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "pdf-title",
+                    "name": "PDF Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "econsent-checkbox-text",
+                    "name": "EConsent Checkbox Text",
+                    "required": false,
+                    "type": "notes",
+                    "repeatable": false
+                }
+            ]
+        },
+        {
+            "key": "save-return-later",
+            "name": "Save & Return Later Text",
+            "required": false,
+            "type": "sub_settings",
+            "repeatable": true,
+            "sub_settings": [{
+                    "key": "save-return-later-lang",
+                    "name": "Language",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "descriptive-text1",
+                    "name": "<span style=\"color:blue;font-style:italic;\">These are translations Save & Return on the survey page.</span>",
+                    "type": "descriptive"
+                },
+                {
+                    "key": "save-return-later-button",
+                    "name": "Button Text",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-later-corner",
+                    "name": "Returning? Corner of Survey",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-later-text",
+                    "name": "Returning? Popup",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-later-continue-button",
+                    "name": "Returning? Continue Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "descriptive-text2",
+                    "name": "<span style=\"color:blue;font-style:italic;\">These are translations for the popup on return page (if using a return code).</span>",
+                    "type": "descriptive"
+                },
+                {
+                    "key": "save-return-page-popup-title",
+                    "name": "Return Page Popup Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-popup-body",
+                    "name": "Return Page Popup Body",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-popup-return-code",
+                    "name": "Return Page Return Code text",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "descriptive-text3",
+                    "name": "<span style=\"color:blue;font-style:italic;\">These are translations for the return page.</span>",
+                    "type": "descriptive"
+                },
+                {
+                    "key": "save-return-page-title",
+                    "name": "Return Page Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-instructions",
+                    "name": "Return Page Instructions",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-return-code-instructions",
+                    "name": "Return Page Return Code Instructions",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-survey-link-title",
+                    "name": "Return Page Email Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-email-instructions",
+                    "name": "Return Page Email Instructions",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-email-button",
+                    "name": "Return Page Email Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-continue-title",
+                    "name": "Return Page Continue Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "descriptive-text4",
+                    "name": "<span style=\"color:blue;font-style:italic;\">These are translations for the continue page.</span>",
+                    "type": "descriptive"
+                },
+                {
+                    "key": "save-return-page-survey-title",
+                    "name": "Continue Title",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-continue-text",
+                    "name": "Continue Page Text",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-startover-text",
+                    "name": "Start Over Text",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "save-return-page-startover-button",
+                    "name": "Start Over Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "descriptive-text5",
+                    "name": "<span style=\"color:blue;font-style:italic;\">These are translations for a completed survey.</span>",
+                    "type": "descriptive"
+                },
+                {
+                    "key": "save-return-page-complete-text",
+                    "name": "Completed Text",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                }
+            ]
+        },
+        {
+            "key": "stop-text",
+            "name": "Stop Survey Text",
+            "required": false,
+            "type": "sub_settings",
+            "repeatable": true,
+            "sub_settings": [{
+                    "key": "stop-text-lang",
+                    "name": "Language",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "stop-text-body",
+                    "name": "Body",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                },
+                {
+                    "key": "stop-text-stop-button",
+                    "name": "Stop Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "stop-text-continue-button",
+                    "name": "Continue Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "stop-text-return-body",
+                    "name": "Return Body",
+                    "required": false,
+                    "type": "textarea",
+                    "repeatable": false
+                }
+            ]
+        },
+        {
+            "key": "survey-control-text",
+            "name": "Survey Control Text",
+            "required": false,
+            "type": "sub_settings",
+            "repeatable": true,
+            "sub_settings": [{
+                    "key": "survey-control-lang",
+                    "name": "Language",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-submit",
+                    "name": "Submit Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-next",
+                    "name": "Next Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-prev",
+                    "name": "Previous Button",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-reset",
+                    "name": "Reset Field Link",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-font-size",
+                    "name": "Font Size Text",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                },
+                {
+                    "key": "survey-control-page-number",
+                    "name": "Page Number: Use 'CURRENTPAGE' and 'MAXPAGE' to place the numbers in the translation like so: (Page CURRENTPAGE of MAXPAGE)",
+                    "required": false,
+                    "type": "text",
+                    "repeatable": false
+                }
+            ]
+        },
+        {
+            "key": "default-error-prompt",
+            "name": "Default error prompt for text fields",
+            "required": false,
+            "type": "sub_settings",
+            "repeatable": true,
+            "sub_settings": [{
+                    "key": "validation",
+                    "name": "Validation type",
+                    "required": false,
+                    "type": "dropdown",
+                    "choices": [{
+                            "name": "Integer",
+                            "value": "int"
+                        },
+                        {
+                            "name": "Number",
+                            "value": "float"
+                        },
+                        {
+                            "name": "Date (dmy)",
+                            "value": "date_dmy"
+                        },
+                        {
+                            "name": "Date (mdy)",
+                            "value": "date_mdy"
+                        },
+                        {
+                            "name": "Date (ymd)",
+                            "value": "date_ymd"
+                        },
+                        {
+                            "name": "Time",
+                            "value": "time"
+                        },
+                        {
+                            "name": "Email",
+                            "value": "email"
+                        }
+                    ]
+                },
+                {
+                    "key": "translations",
+                    "name": "Translations",
+                    "required": false,
+                    "repeatable": true,
+                    "type": "sub_settings",
+                    "sub_settings": [{
+                            "key": "lang",
+                            "name": "Language",
+                            "required": false,
+                            "type": "text"
+                        },
+                        {
+                            "key": "error",
+                            "name": "Translated error message",
+                            "required": false,
+                            "type": "textarea"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "descriptive-text",
+            "name": "<u>Note</u><br><ul><li>Language must match with the labels as defined in the variable `language`.<br>e.g. 'English' instead of 1.</li><li>You may use `[validation_range]` in the translated error message to pipe the validation range.</li></ul>",
+            "type": "descriptive"
+        }
+    ]
 }
