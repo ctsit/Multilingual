@@ -1,9 +1,9 @@
 {
-    "name": "Multilingual",
+    "name": "Multilingual (deprecated)",
 
     "namespace": "CMH\\Multilingual",
 
-    "description": "Allow survey's and data entry forms to be translated into multiple languages. Add translations via the Online Designer.",
+    "description": "Allow survey's and data entry forms to be translated into multiple languages. Add translations via the Online Designer. <b>This module has been deprecated in favor of REDCap's built-in Multi-Language Management feature.</b>",
 
     "versions": [
         { "1.2": "Move all functions into Multilingual class" },
@@ -26,7 +26,8 @@
         { "1.12.1": "Fixed jQuery Exception in controlText and lang setting issue in getLanguage (multilingual_survey.js)" },
         { "1.14.0": "Implemented PDF field translations." },
         { "1.14.1": "Implemented PDF answer translations." },
-        { "1.14.2": "Add PHP8 support." }
+        { "1.14.2": "Add PHP8 support." },
+        { "1.14.3": "Add citations, DOI, and deprecation warnings." }
     ],
 
     "framework-version": 5,
