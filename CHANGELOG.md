@@ -3,6 +3,12 @@ All notable changes to the Multilingual module will be documented in this file.
 This project branch tries to adhere to [Semantic Versioning](http://semver.org/).
 
 
+## [1.14.3] - 2023-01-18
+### Changed
+- Add deprecation warnings and DOI badge (Philip Chase)
+- Add CITATION file (Philip Chase)
+
+
 ## [1.14.2] - 2023-01-13
 ### Changed
 - Fix PHP 8.x bugs
