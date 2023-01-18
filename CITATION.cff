@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hoitenga"
+  given-names: "Jen a"
+- family-names: "Martin"
+  given-names: "Stephen A"
+- family-names: "Jonathan"
+  given-names: "Massé"
+- family-names: "Chase"
+  given-names: "Philip B"
+  orcid: "https://orcid.org/0000-0002-5318-9420"
+title: ctsit/Multilingual: REDCap Multilingual
+doi: 10.5281/zenodo.7544873
+version: 1.14.3
+date-released: 2023-01-17
+url: "https://github.com/ctsit/Multilingual"
