@@ -1,10 +1,17 @@
 
 # Multilingual
 
+[![DOI](https://zenodo.org/badge/588732594.svg)](https://zenodo.org/badge/latestdoi/588732594)
+
 Steve Martin, Children's Mercy Hospital, Kansas City, MO<br>
 Jen Hoitenga, Children's Mercy Hospital, Kansas City, MO
 
 ********************************************************************************
+## Deprecated
+
+This module has been deprecated in favor of REDCap's built-in Multi-Language Management feature. No features will be added. Bugs might be fixed if you report them, but probably won't be. All users of this module are encouraged to phase out projects that use it and migrate new work to REDCap's built-in Multi-Language Management features. REDCap's built-in features are much easier to use.
+
+
 ## Instructions
 
 ###Getting Started
