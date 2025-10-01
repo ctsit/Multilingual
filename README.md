@@ -1,5 +1,12 @@
 
-# Multilingual
+# Multilingual - ARCHIVED
+
+**This repository has been archived and is no longer actively maintained.**
+
+This project was archived as of October 1, 2025. This project has been superseded by REDCap Core features as of REDCap 12.0.0. Please don't hesitate to use this code in accordance with the license; however, the authors are unable to offer any additional support.
+
+-----------
+
 
 [![DOI](https://zenodo.org/badge/588732594.svg)](https://zenodo.org/badge/latestdoi/588732594)
 
